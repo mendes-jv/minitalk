@@ -23,7 +23,7 @@ LIBFT_DIR			:= $(addprefix $(LIBRARIES_DIR), libft/)
 LIBFT_FILE 			:= libft.a
 
 MAKE				:= make
-MAKE_LIBS			:= $(MAKE) -C
+MAKE_LIBS			:= $(MAKE) -sC
 CC					:= cc
 CFLAGS				:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -O3 -g3
 FSANITIZE			:= -fsanitize=address
@@ -84,4 +84,4 @@ fclean: clean
 	@printf "$(GREEN)Cleaned $(CLIENT_NAME) and $(SERVER_NAME) successfully!$(RESET)\n"
 
 re: fclean
-	@$(MAKE)
+	@$(MAKE) -s
