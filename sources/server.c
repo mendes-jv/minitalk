@@ -13,31 +13,37 @@
 #include "../includes/minitalk.h"
 
 static void	set_signals(void);
-static void	handle_signal(int signal, siginfo_t *info, __attribute__((unused)) void *ucontext);
+static void	handle_signal(int signal, siginfo_t *info,
+				__attribute__((unused)) void *ucontext);
 
 int	main(void)
 {
-	ft_printf(SERVER_PID_MESSAGE, getpid());
-	ft_putstr_fd(WAITING_FOR_CONNECTION_MESSAGE, STDOUT_FILENO);
+	ft_putstr_color_fd(ANSI_COLOR_GREEN,
+		SERVER_PID_MESSAGE, STDOUT_FILENO);
+	ft_putnbr_fd(getpid(), STDOUT_FILENO);
+	ft_putstr_color_fd(ANSI_COLOR_YELLOW,
+		WAITING_FOR_CONNECTION_MESSAGE, STDOUT_FILENO);
 	while (THE_NUMBER_OF_THE_BEAST)
 		set_signals();
 }
 
-static void set_signals(void)
+static void	set_signals(void)
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	sa.sa_sigaction = &handle_signal;
+	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_SIGINFO;
-	if(sigaction(SIGUSR1, &sa, NULL) ||
-	   sigaction(SIGUSR2, &sa, NULL))
+	if (sigaction(SIGUSR1, &sa, NULL)
+		|| sigaction(SIGUSR2, &sa, NULL))
 		ft_handle_error(SIGACTION_ERROR_MESSAGE);
 }
 
-static void handle_signal(int signal, siginfo_t *siginfo, __attribute__((unused)) void *context)
+static void	handle_signal(int signal, siginfo_t *siginfo,
+				__attribute__((unused)) void *context)
 {
-	static	size_t byte_count;
-	static	u_char byte;
+	static size_t	byte_count;
+	static u_char	byte;
 
 	if (signal == SIGUSR2)
 		byte |= (0b10000000 >> byte_count);

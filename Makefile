@@ -44,11 +44,16 @@ LIBFT				:= $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
 LIBFT_HEADER		:= $(addprefix $(LIBFT_DIR), includes/libft.h)
 HEADERS				:= -I $(HEADERS_DIR)
 
+# colors
+GREEN  				:= \033[0;32m
+RESET  		 		:= \033[0m
+
 # Rules
 
 .PHONY: all clean fclean re
 
 all: libraries programs
+	@printf "$(GREEN)Compiled $(CLIENT_NAME) and $(SERVER_NAME) successfully!$(RESET)\n"
 
 libraries: $(LIBFT)
 
@@ -69,12 +74,14 @@ $(OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c
 
 clean: cleanlibft
 	@$(RM) $(OBJECTS_DIR)
+	@printf "$(GREEN)Cleaned objects from $(CLIENT_NAME) and $(SERVER_NAME) successfully!$(RESET)\n"
 
 cleanlibft:
 	@$(MAKE_LIBS) $(LIBFT_DIR) fclean
 
 fclean: clean
 	@$(RM) $(CLIENT_NAME) $(SERVER_NAME)
+	@printf "$(GREEN)Cleaned $(CLIENT_NAME) and $(SERVER_NAME) successfully!$(RESET)\n"
 
 re: fclean
 	@$(MAKE)
