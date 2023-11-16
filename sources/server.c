@@ -15,7 +15,7 @@
 static void	handle_signal(int signal, siginfo_t *info,
 				__attribute__((unused)) void *ucontext);
 
-size_t g_bit;
+size_t	g_bit;
 
 int	main(void)
 {
