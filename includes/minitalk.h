@@ -18,13 +18,21 @@
 # include <signal.h>
 
 //Macros
-# ifndef BYTE_CONFIRMATION_MESSAGE
-#  define BYTE_CONFIRMATION_MESSAGE "Byte has been successfully received\n"
-# endif //BYTE_CONFIRMATION_MESSAGE
+# ifndef BIT_CONFIRMATION_MESSAGE
+#  define BIT_CONFIRMATION_MESSAGE "Bit has been successfully received\n"
+# endif //BIT_CONFIRMATION_MESSAGE
 
 # ifndef CONFIRMATION_MESSAGE_ERROR_MESSAGE
 #  define CONFIRMATION_MESSAGE_ERROR_MESSAGE "Failed to send confirmation\n"
 # endif //CONFIRMATION_MESSAGE_ERROR_MESSAGE
+
+# ifndef CONTINUE
+#  define CONTINUE 0
+# endif //CONTINUE
+
+# ifndef CHAR_SIZE
+#  define CHAR_SIZE 1
+# endif //CHAR_SIZE
 
 # ifndef EMPTY_STRING_MESSAGE
 #  define EMPTY_STRING_MESSAGE "Empty message, there's nothing to send\n"
@@ -38,9 +46,9 @@
 #  define INVALID_PID_MESSAGE "Invalid PID\n"
 # endif //INVALID_PID_MESSAGE
 
-# ifndef MINIMAL_DELAY
-#  define MINIMAL_DELAY 50
-# endif //MINIMAL_DELAY
+# ifndef SA_DEFAULT
+#  define SA_DEFAULT 0
+# endif //SA_DEFAULT
 
 # ifndef SERVER_PID_MESSAGE
 #  define SERVER_PID_MESSAGE "\nServer PID: "
@@ -57,6 +65,10 @@
 # ifndef THE_NUMBER_OF_THE_BEAST
 #  define THE_NUMBER_OF_THE_BEAST 666
 # endif //THE_NUMBER_OF_THE_BEAST
+
+# ifndef WAIT
+#  define WAIT 1
+# endif //WAIT
 
 # ifndef WAITING_FOR_CONNECTION_MESSAGE
 #  define WAITING_FOR_CONNECTION_MESSAGE "\n\nWaiting for signals...\n\n"

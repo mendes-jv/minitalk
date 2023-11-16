@@ -23,10 +23,9 @@ LIBFT_DIR			:= $(addprefix $(LIBRARIES_DIR), libft/)
 LIBFT_FILE 			:= libft.a
 
 MAKE				:= make
-MAKE_LIBS			:= $(MAKE) -C
+MAKE_LIBS			:= $(MAKE) -sC
 CC					:= cc
-CFLAGS				:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -O3 -g3
-FSANITIZE			:= -fsanitize=address
+CFLAGS				:= -Wall -Wextra -Werror
 MKDIR				:= mkdir -p
 RM					:= rm -rf
 
@@ -60,10 +59,10 @@ libraries: $(LIBFT)
 programs: $(CLIENT_NAME) $(SERVER_NAME)
 
 $(CLIENT_NAME): $(CLIENT_OBJECTS)
-	@$(CC) $(CFLAGS) $(FSANITIZE) $(CLIENT_OBJECTS) $(LIBFT) -o $(CLIENT_NAME) $(INCLUDES)
+	@$(CC) $(CFLAGS) $(CLIENT_OBJECTS) $(LIBFT) -o $(CLIENT_NAME) $(INCLUDES)
 
 $(SERVER_NAME): $(SERVER_OBJECTS)
-	@$(CC) $(CFLAGS) $(FSANITIZE) $(SERVER_OBJECTS) $(LIBFT) -o $(SERVER_NAME) $(INCLUDES)
+	@$(CC) $(CFLAGS) $(SERVER_OBJECTS) $(LIBFT) -o $(SERVER_NAME) $(INCLUDES)
 
 $(LIBFT):
 	@$(MAKE_LIBS) $(LIBFT_DIR)
@@ -84,4 +83,4 @@ fclean: clean
 	@printf "$(GREEN)Cleaned $(CLIENT_NAME) and $(SERVER_NAME) successfully!$(RESET)\n"
 
 re: fclean
-	@$(MAKE)
+	@$(MAKE) -s
